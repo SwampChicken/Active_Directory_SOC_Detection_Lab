@@ -42,9 +42,9 @@ The detection Strategy focused on:
 ## SOC Dashboard
 
 This dashboard was created before the attack and was supposed to serve as the primary monitoring interface during the incident, but it was a little bit misconfigured so i couldn't rely only on it.
-[!Dashboard image 1](images/dashboard1.png)
-[!Dashboard image 2](images/dashboard2.png)
-[!Dashboard image 3](images/dashboard3.png)
+![Dashboard image 1](images/dashboard1.png)
+![Dashboard image 2](images/dashboard2.png)
+![Dashboard image 3](images/dashboard3.png)
 ## Incident Summary
 
 The incident began with a phishing attack targeting a workstation user (m.victim).
