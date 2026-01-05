@@ -14,3 +14,16 @@ The scenario focuses on detection, investigation, and incident response to a phi
 - Log tampering for defense evasion
 
 All activity was centrally logged and analyzed using Splunk, allowing full reconstruction of the attack timeline and evaluation of detection coverage.
+
+## Lab Architecture
+
+The lab environment was designed to be similar to a small enterprise Active Directory setup monitored by a centralized SIEM.
+
+- **Domain Controller:** Windows Server 2022 VM
+- **Workstation** Windows 10 VM (initially compromised via phishing)
+- **Attacker Machine:** Kali Linux VM
+- **SIEM:** Splunk Enterprise running on the host machine
+- **Telemetry**:
+    -  Wndows Security Event Logs
+    -   Sysmon
+- **Networking:** Virtual machines were connected using Bridged networking, allowing them to communicate directly with each other and the host machine.
