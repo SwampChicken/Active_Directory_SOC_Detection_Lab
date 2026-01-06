@@ -39,7 +39,7 @@ added it to domain admins group.
 
 ## 4. Credential Theft
 
-Seeing that administrator created new user shortly after an incident start i suspected that as malicious activity so i filtered logs for time between failed escalation attemtps and creation of new user and started to search manually through logs
+Seeing that administrator created new user shortly after an incident start i suspected that as malicious activity so i filtered logs for time between failed escalation attempts and creation of new user and started to search manually through logs
 Then i found that "notepad.exe" was used to open "passwords.txt"  on m.victim desktop, which meant that attacker obtained plaintext password for soclab\administrator account.
 
 ## 5. Lateral Movement and Administrative Pivot
