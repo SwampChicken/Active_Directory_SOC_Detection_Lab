@@ -3,7 +3,7 @@
 This document outlines the key takeaways to prevent recurrence and improve future detection capabilities.
 
 ## 1. Key Vulnerabilities Identified
- - Plaintext Credential Storagee - discovery of passwords.txt led to domain-wide escalation
+ - Plaintext Credential Storage - discovery of passwords.txt led to domain-wide escalation
  - Weak Kerberos Encryption - environment allowed RC4 encryption for Kerberos tickets making it vulnerable to Kerberoasting attacks.
  - Lack of LAPS - reuse of local administrator credentials allowed for easier lateral movement once initial account was compromised
 
@@ -17,7 +17,7 @@ This document outlines the key takeaways to prevent recurrence and improve futur
 
 ## 3. Hardening
  - Implement LAPS
- - Conduct security awareness training focusing on risks of storing passwords in unecrypted local files
+ - Conduct security awareness training focusing on risks of storing passwords in unencrypted local files
  - Disable RC4 encryption for Kerberos and enforce AES256 to mitigate Kerberoasting risks
  - Update SOC dashboard to include kill chain visualization
  - Tune up alert rules so they detect more suspicious actions
