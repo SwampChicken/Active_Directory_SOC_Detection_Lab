@@ -3,8 +3,12 @@
 ## Table of Contents
 ### [1. Overview](#Overview)
 ### [2. Lab Architecture](#lab-architecture)
-
-
+### [3. Detection Strategy](#detection-strategy)
+### [4. SOC Dashboard](#soc-dashboard)
+* [Detailed Alert Logic](./Analytics/alerts.md)
+### [5. Overview](#Overview)
+### [6. Lab Architecture](#lab-architecture)
+### [7. Repository Structure](#repository-structure)
 ## Overview
 
 This project simulates a real-world security incident in a Windows Active Directory environment from a SOC Analyst perspective.
