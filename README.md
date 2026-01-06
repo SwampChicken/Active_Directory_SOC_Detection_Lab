@@ -5,7 +5,7 @@
 ### [2. Lab Architecture](#lab-architecture)
 ### [3. Detection Engineering and Analytics](./Analytics)
 * [Custom Splunk Alerts](./Analytics/alerts.md)
-* [SOC Monitoring Dashboard](./Analytics/dashboards.md)
+* [SOC Monitoring Dashboard](./Analytics/dashboard.md)
 * [MITRE ATT&CK Mapping](./Analytics/mitre_mapping.md)
 ### [4. Incident Response Documentation](./Incident_Response/)
 * [Incident Summary](./Incident_Response/incident_summary.md)
