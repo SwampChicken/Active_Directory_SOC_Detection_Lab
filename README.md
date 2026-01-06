@@ -1,14 +1,22 @@
 # Active Directory SOC Detection Lab
 
-## Table of Contents
-### [1. Overview](#Overview)
+##  Table of Contents
+### [1. Overview](#overview)
 ### [2. Lab Architecture](#lab-architecture)
-### [3. Detection Strategy](#detection-strategy)
-### [4. SOC Dashboard](#soc-dashboard)
-* [Detailed Alert Logic](./Analytics/alerts.md)
-### [5. Overview](#Overview)
-### [6. Lab Architecture](#lab-architecture)
-### [7. Repository Structure](#repository-structure)
+### [3. Detection Engineering and Analytics](./Analytics)
+* [Custom Splunk Alerts](./Analytics/alerts.md)
+* [SOC Monitoring Dashboard](./Analytics/dashboards.md)
+* [MITRE ATT&CK Mapping](./Analytics/mitre_mapping.md)
+### [4. Incident Response Documentation](./Incident_Response/)
+* [Incident Summary](./Incident_Response/incident_summary.md)
+* [Full Attack Timeline](./Incident_Response/attack_timeline.md)
+* [Investigation and Evidence](./Incident_Response/investigation.md)
+* [Containment and Eradication](./Incident_Response/containment_and_eradication.md)
+* [Lessons Learned and Hardening](./Incident_Response/lessons_learned.md)
+### [5. Infrastructure and Provisioning](#repository-structure)
+* [AD Setup Script](./Provisioning/ad_users_setup.ps1)
+* [Telemetry Configuration](./Telemetry/)
+
 ## Overview
 
 This project simulates a real-world security incident in a Windows Active Directory environment from a SOC Analyst perspective.
