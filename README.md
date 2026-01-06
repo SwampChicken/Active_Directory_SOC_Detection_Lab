@@ -1,5 +1,10 @@
 # Active Directory SOC Detection Lab
 
+## Table of Contents
+### [1. Overview](#Overview)
+### [2. Lab Architecture](#lab-architecture)
+
+
 ## Overview
 
 This project simulates a real-world security incident in a Windows Active Directory environment from a SOC Analyst perspective.
