@@ -73,11 +73,48 @@ index="wineventlog" EventCode=4769 TicketOptions="0x40810000" TicketEncryptionTy
  - Evidence of failure: Multiple attempts to run net localgroup, but no Event ID 4732 was generated for this account during this window
 
 ![Failed privilege escalation evidence](../images/failed_privilege_escalation_evidence.png)
- SPL:
+
+
+SPL:
 ```
 index=wineventlog EventID=1  ParentUser="soclab\\sql_svc" | table  _time, Image, CommandLine, ParentImage  | sort  _time
 ```
 and for EventCode = 4732
 ```
 index=wineventlog EventCode = 4732
+```
+
+
+## 5. Credential Theft from File (00:11)
+ - Action: Attacker reverts to manual discovery and finds passwords.txt on the desktop
+ - Evidence: Sysmon ID 1 logs notepad.exe opening the plaintext password file
+
+ ![Credential theft evidence](../images/credential_theft_evidence1.png)
+ ![Credential theft evidence 2](../images/credential_theft_evidence2.png)
+
+SPL (looked through events manually and set the time after 23:30):
+```
+index="wineventlog" source="Sysmon" EventCode=1
+| table _time, User, Image, CommandLine
+| sort _time
+```
+
+## 6. Administrator compromise and domain access (00:12)
+ - Action: Attacker authenticates as soclab\Administrator and maps the Domain Controller's C$ share.
+ - Evidence: Sysmon ID 1 logs
+
+![Administrator and domain access evidence](../images/administrator_and_domain_access_evidence.png)
+
+## 7. Data Exfiltration
+ - Action: Using Administrator privileges attacker exfiltrates finance_leak.zip via HTTP POST
+ - Evidence: Event ID 4104 captures the Invoke-WebRequest command in plaintext
+
+![Data Exfiltration evidence](../images/data_exfiltration_evidence.png)
+
+
+SPL:
+```
+index="wineventlog" EventCode=4104
+| table _time, ScriptBlockText
+| sort _time
 ```
