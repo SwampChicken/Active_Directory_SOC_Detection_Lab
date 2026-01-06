@@ -8,8 +8,8 @@ Incident was identified through a preconfigured Splunk alert detecting malicious
  - Action: Attacker executes malicious PowerShell command that downloads malicious script, and then they execute another PowerShell script that establishes reverse shell connection.
  - Evidence: Two "Malicious PowerShell Command Detected" alerts triggered.
 ![Malicious PowerShell Command Detected Alert1](../images/powershell_download_alert.png)
-![Malicious PowerShell Command Detected Alert2](images/powershell_c2_alert.png)
-![Powershell C2 and Download Commands exeuction](images/powershell_c2_and_download_evidence.png)
+![Malicious PowerShell Command Detected Alert2](../images/powershell_c2_alert.png)
+![Powershell C2 and Download Commands exeuction](../images/powershell_c2_and_download_evidence.png)
  - Full Commands:
 
 
