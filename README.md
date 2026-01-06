@@ -90,5 +90,5 @@ This project focuses on the analyst-side incident response process including:
 - **Telemetry/** - Log collection configuration (Sysmon, Splunk inputs)
 - **Provisioning/** - Script used to provision lab users
 - **Analytics/** - Dashboard and detection logic
-- **Incident_Response/** - Incident analysis, timeline, and response documnetation
+- **Incident_Response/** - Incident analysis, timeline, and response documentation
 - **images/** - Screenshots related to the project
