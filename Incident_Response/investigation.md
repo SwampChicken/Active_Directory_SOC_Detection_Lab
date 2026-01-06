@@ -6,7 +6,7 @@
 I started the investigation after multiple high and medium severity alerts were triggered within a short time window:
 
 
-![triggered alerts](.//images/alerts_triggered.png)
+![triggered alerts](../images/alerts_triggered.png)
 
 
 Despite Having a preconfigured SOC Dashboard, I noticed that it was misconfigured and didn't provide a clear correlation of the unfolding attack. To ensure full visibility i shifted to manual SPL hunting.
