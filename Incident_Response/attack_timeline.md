@@ -34,6 +34,24 @@ index="wineventlog" source="*Sysmon/Operational" EventCode=1
 | sort -_time
 ```
 ## 2. Post-Exploitation Discovery (22:03 - 22:42)
- - Action
+ - Action: Attacker ran discovery command to identify user, and groups
  - Evidence: Alert for "Discovery Commands Detection" triggered.
- - 
+![Discovery Commands Detection Alert](../images/discover_command_alert.png)
+![Discovery Command Evidence](../images/discovery_command_evidence.png)
+SPL used in alert:
+```
+index="wineventlog" source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1
+| search CommandLine="*whoami*" OR CommandLine="*net user*" OR CommandLine="*ipconfig*" OR CommandLine="*systeminfo*" OR CommandLine="*net group*"
+| table _time, host, User, Image, CommandLine, ParentImage
+```
+## 3.Credential Access: Kerberoasting (22:48)
+ - Action: Attacker attempted to harvest service account credentials via Kerberoasting.
+ - Evidence: Alert for "Suspicious Kerberos RC4 Ticket Request" triggered.
+ ![Suspicious Kerberos RC4 alert](../images/suspicious_kerberos_rc4_alert.png)
+ ![Suspicious Kerberos RC4 evidence](../images/suspicious_kerberos_rc4_evidence.png)
+SPL used in alert:
+```
+index="wineventlog" EventCode=4769 TicketOptions="0x40810000" TicketEncryptionType="0x17"
+| xmlkv
+| table _time, host, TargetUserName, ServiceName, IpAddress, TicketEncryptionType
+```
