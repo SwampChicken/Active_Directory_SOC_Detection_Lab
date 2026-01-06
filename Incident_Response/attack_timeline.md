@@ -105,7 +105,7 @@ index="wineventlog" source="Sysmon" EventCode=1
 
 ![Administrator and domain access evidence](../images/administrator_and_domain_access_evidence.png)
 
-## 7. Data Exfiltration
+## 7. Data Exfiltration (00:21)
  - Action: Using Administrator privileges attacker exfiltrates finance_leak.zip via HTTP POST
  - Evidence: Event ID 4104 captures the Invoke-WebRequest command in plaintext
 
@@ -118,3 +118,43 @@ index="wineventlog" EventCode=4104
 | table _time, ScriptBlockText
 | sort _time
 ```
+
+
+## 8. Persistence: Backdoor Account and Crypto-MIner (00:41 - 00:46)
+ - Action: Attacker ensures long-term access by:
+   - Creating the "WinCryptoMiner" service with a hidden PowerShell loop (00:41)
+   - Creating account "svc_backup" and elevating it to Domain Admin (00:46)
+ - Evidence:
+
+
+![Creation of wincryptiominer and svc_backup evidence](../images/persistence_evidence.png)
+![event id 4732 evidence](../images/event_4732_evidence.png)
+
+
+SPL (and time after 00:21):
+```
+index="wineventlog" EventCode=4104
+| table _time, ScriptBlockText
+| sort _time
+```
+
+
+SPL for EventCode=4732
+```
+index="wineventlog" EventCode=4732
+```
+
+## 9. Defense Evasion: Log Wiping (00:53)
+ - Action: Attacker attempts to delete the evidence by clearing the Security Event Logs.
+ - Evidence: "Defense Evasion - log wiping" alert triggered
+
+![Defense Evasion alert triggered](../images/defense_evasion_alert.png)
+![Defense Evasion evidence](../images/defense_evasion_evidence.png)
+
+
+SPL used in alert:
+```
+index="wineventlog" EventCode=1102
+| table _time, Computer, SubjectUserName, SubjectDomainName
+```
+
