@@ -7,6 +7,8 @@ Incident was identified through a preconfigured Splunk alert detecting malicious
 ## 1. Initial Access and C2 Establishment (21:53 - 22:03)
  - Action: Attacker executes malicious PowerShell command that downloads malicious script, and then they execute another PowerShell script that establishes reverse shell connection.
  - Evidence: Two "Malicious PowerShell Command Detected" alerts triggered.
+
+
 ![Malicious PowerShell Command Detected Alert1](../images/powershell_download_alert.png)
 ![Malicious PowerShell Command Detected Alert2](../images/powershell_c2_alert.png)
 ![Powershell C2 and Download Commands exeuction](../images/powershell_c2_and_download_evidence.png)
@@ -36,6 +38,8 @@ index="wineventlog" source="*Sysmon/Operational" EventCode=1
 ## 2. Post-Exploitation Discovery (22:03 - 22:42)
  - Action: Attacker ran discovery command to identify user, and groups
  - Evidence: Alert for "Discovery Commands Detection" triggered.
+
+
 ![Discovery Commands Detection Alert](../images/discover_command_alert.png)
 ![Discovery Command Evidence](../images/discovery_command_evidence.png)
 
@@ -49,6 +53,8 @@ index="wineventlog" source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
 ## 3.Credential Access: Kerberoasting (22:48)
  - Action: Attacker attempted to harvest service account credentials via Kerberoasting.
  - Evidence: Alert for "Suspicious Kerberos RC4 Ticket Request" triggered.
+
+
  ![Suspicious Kerberos RC4 alert](../images/suspicious_kerberos_rc4_alert.png)
  ![Suspicious Kerberos RC4 evidence](../images/suspicious_kerberos_rc4_evidence.png)
 
