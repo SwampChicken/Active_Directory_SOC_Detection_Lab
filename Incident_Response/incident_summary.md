@@ -18,7 +18,7 @@ This incident led to full AD domain compromise and was detected through Splunk S
  - **Impacted Hosts:** WIN-10VICTIM (Initial Entry Point), DC-01.soc.lab (Domain Controller)
  - **Impacted Accounts:** soclab\m.victim (Compromised via Phishing/C2), soclab\Administrator (Compromised via Credential Theft), soclab\sql_svc (Targeted via Kerberoasting)
 
-## 3. High-Level Impact Assesment
+## 3. High-Level Impact Assessment
 - **Confidentiality:** HIGH. Sensitive financial data was successfullly exfiltrated via HTTP POST.
 - **Integrity:** HIGH. Attacker Modified Active Directory group memberships and installed a persistent system service.
 - **Availability:** LOW. No systems were taken offline, but installation of a crypto-miner suggests resource hijacking.
