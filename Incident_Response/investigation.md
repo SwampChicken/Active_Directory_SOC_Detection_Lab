@@ -24,7 +24,7 @@ Despite Having a preconfigured SOC Dashboard, I noticed that it was misconfigure
 First alert that i analyzed was "Malicious PowerShell Command Detected", as it represented the earliest high-cofidence indicator of compromise.
 
 I reviewed Sysmon Event ID 1 logs and found powershell.exe launched with a large -EncodedCommand block.
-Then i used CyberChef to decode the base64 string, which reaveled a TCP reverse shell targeting 192.168.33.33:4444
+Then i used CyberChef to decode the base64 string, which revealed a TCP reverse shell targeting 192.168.33.33:4444
 This Confirmed an active C2 channel which meant that the alert is True Positive.
 
 ## 3. Post-Exploitation Discovery and Failed Escalation
