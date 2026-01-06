@@ -26,7 +26,7 @@ index=wineventlog (EventCode=4624 OR EventCode=4625)
 | table IpAddress, TargetUserName, failures, success
 ```
 
-Correlates series of failed logins with a sudden success from the same IP, strongly suggests a successfull account takeover.
+Correlates series of failed logins with a sudden success from the same IP, strongly suggests a successful account takeover.
 
 ## Defense Evasion - log wiping
 
@@ -48,7 +48,7 @@ index="wineventlog" source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
 | table _time, host, User, Image, CommandLine, ParentImage
 ```
 
-Monitors for reconneissance commands that are typically used by attackers immediately after gaining acccess.
+Monitors for reconnaissance commands that are typically used by attackers immediately after gaining acccess.
 
 ## Identity or Group Modification
 
