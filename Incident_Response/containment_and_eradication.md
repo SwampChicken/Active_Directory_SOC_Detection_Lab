@@ -9,26 +9,26 @@ All Actions below represent recommended incident response steps in a real SOC en
 
  - Initially compromised workstation (WIN10-VICTIM) should be isolated from the network to prevent further c2 communication and lateral movement.
  - Block Attacker Infrastructure - Implement firewall rules to block all traffic to and from IP 192.168.33.33 and monitor for any attempts to connect to port 4444.
- - Immadiately disable soclab\m.victim, soclab\Administrator, and unauthorized soclab\svc_backup accounts.
+ - Immediately disable soclab\m.victim, soclab\Administrator, and unauthorized soclab\svc_backup accounts.
 
 ## 2. Containment of Lateral Movement
  - Review and revert all recent changes to Domain Admins and local Administrators groups.
  - Force a password reset for soclab\sql_svc account to invalidate any tickets obtained by Kerberoasting, perform double rotation of KRBTGT account password to invalidate all active kerberos tickets across the domain.
 
 ## 3. Eradication of Persistence Mechanisms
- - Delete WinCryptoMIner service from domain controller using sc.exe delete.
+ - Delete WinCryptoMiner service from domain controller using sc.exe delete.
  - Delete svc_backup account created by attacker
  - Scan all domain systems for unauthorized scheduled tasks, registry run keys or new local user accounts created during attacker's dwell time.
 
 ## 4. Malware and Artifact Removal
  - Remove all malicious PowerShell scripts and finance_leak.zip archive from local drives.
  - Securely delete passwords.txt file from m.victim desktop and conduct a scan for other plaintext credential files in entire environment.
- - Reimagee WIN-10VICTIM to ensure no hidden persistence or secondary payloads remain on the host.
+ - Reimage WIN-10VICTIM to ensure no hidden persistence or secondary payloads remain on the host.
 
 ## 5. Recovery and Hardening
  - Enforce mandatory password change for all administrative and service accounts using strong, unique passwords.
  - Deploy Microsoft LAPS to manage local administrator passwords, preventing the reuse of credentials across the domain.
- - Recommend implementation of MFA for all privileged accoutns to mitigate the impact ofr future credential theft.
+ - Recommend implementation of MFA for all privileged accounts to mitigate the impact of future credential theft.
 
 ## 6. Monitoring and Validation
  - Maintain high-verbosity logging for PowerShell Script Block Logging and Sysmon process creation.
