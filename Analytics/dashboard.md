@@ -17,3 +17,8 @@ This dashboard was created before the incident and designed to track entire atta
 **Lateral Movement:** Monitor sysmon event id 3 for connection over sensitive ports like 445(smb) and 5985(winrm).
 
 [View Full Dashboard XML Source Code](./soc_analyst_view.xml)
+
+## Dashboard Visualization
+![dashboard 1](../images/dashboard1.png)
+![dashboard 2](../images/dashboard2.png)
+![dashboard 3](../images/dashboard3.png)
