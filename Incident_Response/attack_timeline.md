@@ -120,14 +120,14 @@ index="wineventlog" EventCode=4104
 ```
 
 
-## 8. Persistence: Backdoor Account and Crypto-MIner (00:41 - 00:46)
+## 8. Persistence: Backdoor Account and Crypto-Miner (00:41 - 00:46)
  - Action: Attacker ensures long-term access by:
    - Creating the "WinCryptoMiner" service with a hidden PowerShell loop (00:41)
    - Creating account "svc_backup" and elevating it to Domain Admin (00:46)
  - Evidence:
 
 
-![Creation of wincryptiominer and svc_backup evidence](../images/persistence_evidence.png)
+![Creation of miner and svc_backup evidence](../images/persistence_evidence.png)
 ![event id 4732 evidence](../images/event_4732_evidence.png)
 
 
