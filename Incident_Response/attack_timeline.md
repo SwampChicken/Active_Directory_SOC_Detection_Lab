@@ -65,3 +65,19 @@ index="wineventlog" EventCode=4769 TicketOptions="0x40810000" TicketEncryptionTy
 | xmlkv
 | table _time, host, TargetUserName, ServiceName, IpAddress, TicketEncryptionType
 ```
+
+
+## 4. Failed Privilege Escalation (23:08 - 23:30)
+ - Action: Attacker attempts to add m.victim account to the local Administrators group.
+ - Ooutcome: Failed, Access Control blocked the operation.
+ - Evidence of failure: Multiple attempts to run net localgroup, but no Event ID 4732 was generated for this account during this window
+
+![Failed privilege escalation evidence](../images/failed_privilege_escalation_evidence.png)
+ SPL:
+```
+index=wineventlog EventID=1  ParentUser="soclab\\sql_svc" | table  _time, Image, CommandLine, ParentImage  | sort  _time
+```
+and for EventCode = 4732
+```
+index=wineventlog EventCode = 4732
+```
