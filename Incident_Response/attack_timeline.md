@@ -38,6 +38,8 @@ index="wineventlog" source="*Sysmon/Operational" EventCode=1
  - Evidence: Alert for "Discovery Commands Detection" triggered.
 ![Discovery Commands Detection Alert](../images/discover_command_alert.png)
 ![Discovery Command Evidence](../images/discovery_command_evidence.png)
+
+
 SPL used in alert:
 ```
 index="wineventlog" source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1
@@ -49,6 +51,8 @@ index="wineventlog" source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
  - Evidence: Alert for "Suspicious Kerberos RC4 Ticket Request" triggered.
  ![Suspicious Kerberos RC4 alert](../images/suspicious_kerberos_rc4_alert.png)
  ![Suspicious Kerberos RC4 evidence](../images/suspicious_kerberos_rc4_evidence.png)
+
+
 SPL used in alert:
 ```
 index="wineventlog" EventCode=4769 TicketOptions="0x40810000" TicketEncryptionType="0x17"
