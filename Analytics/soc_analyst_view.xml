@@ -1,0 +1,289 @@
+<dashboard version="1.1" theme="dark">
+
+  <label>SOC ANALYST VIEW</label>
+
+  <row>
+
+    <panel>
+
+      <table>
+
+        <title>Failed Authentication Attempts</title>
+
+        <search>
+
+          <query>index="wineventlog" EventCode=4625 
+
+| stats count, min(_time) as first_attempt, max(_time) as last_attempt by TargetUserName, IpAddress
+
+| eval first_attempt=strftime(first_attempt, "%Y-%m-%d %H:%M:%S"), last_attempt=strftime(last_attempt, "%Y-%m-%d %H:%M:%S")
+
+| sort - count</query>
+
+          <earliest>1767553200</earliest>
+
+          <latest>1767571200</latest>
+
+          <refresh>30s</refresh>
+
+          <refreshType>delay</refreshType>
+
+        </search>
+
+        <option name="drilldown">cell</option>
+
+        <option name="refresh.display">progressbar</option>
+
+      </table>
+
+    </panel>
+
+    <panel>
+
+      <table>
+
+        <title>Successful Logons</title>
+
+        <search>
+
+          <query>index="wineventlog" EventCode=4624 (LogonType=2 OR LogonType=11 OR LogonType=10)
+
+| search NOT (TargetUserName="*$*" OR TargetUserName="SYSTEM" OR TargetUserName="DWM-*" OR TargetUserName="UMFD-*")
+
+| table _time, TargetUserName, LogonType, IpAddress</query>
+
+          <earliest>1767553200</earliest>
+
+          <latest>1767571200</latest>
+
+          <refresh>30s</refresh>
+
+          <refreshType>delay</refreshType>
+
+        </search>
+
+        <option name="drilldown">cell</option>
+
+        <option name="refresh.display">progressbar</option>
+
+      </table>
+
+    </panel>
+
+  </row>
+
+  <row>
+
+    <panel>
+
+      <table>
+
+        <title>Account and Group Changes</title>
+
+        <search>
+
+          <query>index="wineventlog" (EventCode=4720 OR EventCode=4728 OR EventCode=4732 OR EventCode=4722 OR EventCode=4724)
+
+| table _time, host, EventCode, SubjectUserName, TargetUserName, MemberName
+
+| sort -_time</query>
+
+          <earliest>-24h@h</earliest>
+
+          <latest>now</latest>
+
+          <refresh>30s</refresh>
+
+          <refreshType>delay</refreshType>
+
+        </search>
+
+        <option name="drilldown">none</option>
+
+        <option name="refresh.display">progressbar</option>
+
+      </table>
+
+    </panel>
+
+    <panel>
+
+      <table>
+
+        <title>Suspicious Powershell Activity</title>
+
+        <search>
+
+          <query>index="wineventlog" sourcetype="XmlWinEventLog" source="*Sysmon/Operational" EventCode=1
+
+| search "encoded" OR "base64" OR "-enc" OR "iex" OR "DownloadString" OR "WebClient" OR "Invoke-Shellcode" OR "Net.WebClient" OR "Reflection.Assembly" OR "BitTransfer"
+
+| table _time, host, User, Image, CommandLine
+
+| sort -_time</query>
+
+          <earliest>1767553200</earliest>
+
+          <latest>1767571200</latest>
+
+          <refresh>30s</refresh>
+
+          <refreshType>delay</refreshType>
+
+        </search>
+
+        <option name="drilldown">none</option>
+
+        <option name="refresh.display">progressbar</option>
+
+        <option name="wrap">false</option>
+
+      </table>
+
+    </panel>
+
+  </row>
+
+  <row>
+
+    <panel>
+
+      <table>
+
+        <title>Suspicious Process Execution (Sysmon 1)</title>
+
+        <search>
+
+          <query>index="wineventlog" source="*Sysmon/Operational" EventCode=1 
+
+NOT (Image="*\\splunk*" OR ParentImage="*\\splunk*" OR Image="*\\vmtoolsd.exe" OR ParentImage="*\\vmtoolsd.exe")
+
+| table _time, User, Image, ParentImage, CommandLine 
+
+| sort -_time</query>
+
+          <earliest>1767553200</earliest>
+
+          <latest>1767571200</latest>
+
+          <refresh>30s</refresh>
+
+          <refreshType>delay</refreshType>
+
+        </search>
+
+        <option name="drilldown">cell</option>
+
+        <option name="refresh.display">progressbar</option>
+
+      </table>
+
+    </panel>
+
+    <panel>
+
+      <table>
+
+        <title>Persistence Events (Scheduled Tasks)</title>
+
+        <search>
+
+          <query>index="wineventlog" (EventCode=4698 OR EventCode=4702)
+
+| xmlkv
+
+| where NOT (Command LIKE "%usoclient.exe%")
+
+| table _time, host, TaskName, Command
+
+| sort -_time</query>
+
+          <earliest>1767553200</earliest>
+
+          <latest>1767571200</latest>
+
+          <refresh>30s</refresh>
+
+          <refreshType>delay</refreshType>
+
+        </search>
+
+        <option name="drilldown">none</option>
+
+        <option name="refresh.display">progressbar</option>
+
+      </table>
+
+    </panel>
+
+  </row>
+
+  <row>
+
+    <panel>
+
+      <table>
+
+        <title>Kerberos Activity</title>
+
+        <search>
+
+          <query>index="wineventlog" EventCode=4769 TicketEncryptionType="0x17"
+
+| table _time, TargetUserName, ServiceName, TicketEncryptionType, IpAddress
+
+| sort -_time</query>
+
+          <earliest>1767553200</earliest>
+
+          <latest>1767571200</latest>
+
+          <refresh>30s</refresh>
+
+          <refreshType>delay</refreshType>
+
+        </search>
+
+        <option name="drilldown">none</option>
+
+        <option name="refresh.display">progressbar</option>
+
+      </table>
+
+    </panel>
+
+    <panel>
+
+      <table>
+
+        <title>Lateral Movement Indicators</title>
+
+        <search>
+
+          <query>index="wineventlog" source="*Sysmon/Operational" EventCode=3 (DestinationPort=445 OR DestinationPort=135 OR DestinationPort=5985)
+
+| table _time, User, Image, SourceIp, DestinationIp, DestinationPort
+
+| sort -_time</query>
+
+          <earliest>1767553200</earliest>
+
+          <latest>1767571200</latest>
+
+          <refresh>30s</refresh>
+
+          <refreshType>delay</refreshType>
+
+        </search>
+
+        <option name="drilldown">none</option>
+
+        <option name="refresh.display">progressbar</option>
+
+      </table>
+
+    </panel>
+
+  </row>
+
+</dashboard>
