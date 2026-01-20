@@ -14,7 +14,7 @@
 * [Containment and Eradication](./Incident_Response/containment_and_eradication.md)
 * [Lessons Learned and Hardening](./Incident_Response/lessons_learned.md)
 ### [5. Infrastructure and Provisioning](#repository-structure)
-* [AD Setup Script](./Provisioning/ad_users_setup.ps1)
+* [AD Setup Script](./Provisioning/AD_provisioning.ps1)
 * [Telemetry Configuration](./Telemetry/)
 
 ## Overview
@@ -84,7 +84,7 @@ This project focuses on the analyst-side incident response process including:
 - Investigation and timeline reconstruction
 - Identification of affected users
 - Assessment of attacker objectives and impact
-- Recommended containment, eradication, and recovery actions
+- Recommended containment, erication, and recovery actions
 
 ## Repository Structure
 - **Telemetry/** - Log collection configuration (Sysmon, Splunk inputs)
